@@ -11,10 +11,15 @@ import UIKit
 class TodoListVC: UITableViewController {
 
     var itemArray = ["Learn iOS", "Learn Android", "Learn Django"]
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let items = defaults.array(forKey: "TodoListArray") as? [String] {
+            print("flag 1")
+            itemArray = items
+        }
     }
     
     
@@ -58,6 +63,7 @@ class TodoListVC: UITableViewController {
             //when user click add btn
 //            print(textField.text)
             self.itemArray.append(textField.text!)
+            self.defaults.setValue(self.itemArray, forKey: "TodoListArray")
             self.tableView.reloadData()
             print(self.itemArray[self.itemArray.count - 1])
         }
