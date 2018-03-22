@@ -11,15 +11,19 @@ import UIKit
 class TodoListVC: UITableViewController {
 
     var itemArray = [Item]()
-    let defaults = UserDefaults.standard
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        print(dataFilePath)
+        
         // Do any additional setup after loading the view, typically from a nib.
-        if let items = defaults.array(forKey: "TodoListArray") as? [Item] {
-            print("flag 1")
-            itemArray = items
-        }
+//        if let items = defaults.array(forKey: "TodoListArray") as? [Item] {
+//            print("flag 1")
+//            itemArray = items
+//        }
         
         let newItem = Item()
         newItem.title = "Learn iOS"
@@ -69,9 +73,9 @@ class TodoListVC: UITableViewController {
         
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
+        saveItems()
         
-        
-        tableView.reloadData()
+       // tableView.reloadData()
         
 //        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
 //            tableView.cellForRow(at: indexPath)?.accessoryType = .none
@@ -98,7 +102,8 @@ class TodoListVC: UITableViewController {
             
             self.itemArray.append(newItem)
             
-            self.defaults.setValue(self.itemArray, forKey: "TodoListArray")
+            self.saveItems()
+            
             self.tableView.reloadData()
             print(self.itemArray[self.itemArray.count - 1])
         }
@@ -110,8 +115,21 @@ class TodoListVC: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //MARK - Model Manuplation Methods
     
-    
+    //save data in NSCoder by encoding technique
+    func saveItems(){
+        let encoder = PropertyListEncoder()
+        
+        do{
+            let data = try encoder.encode(itemArray)
+            try data.write(to: dataFilePath!)
+        }
+        catch{
+            print("Error Encoding: \(error)")
+        }
+        
+    }
     
 
   
