@@ -12,7 +12,7 @@
 		8401A7D6205F474600FFB899 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8401A7D4205F474600FFB899 /* Main.storyboard */; };
 		8401A7D8205F474600FFB899 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8401A7D7205F474600FFB899 /* Assets.xcassets */; };
 		8401A7DB205F474600FFB899 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8401A7D9205F474600FFB899 /* LaunchScreen.storyboard */; };
-		84177A0E2064DE90004A3FAD /*  DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84177A0C2064DE90004A3FAD /*  DataModel.xcdatamodeld */; };
+		84177A0E2064DE90004A3FAD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84177A0C2064DE90004A3FAD /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +69,7 @@
 		840A782A206129D40024BD1D /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				84177A0C2064DE90004A3FAD /*  DataModel.xcdatamodeld */,
+				84177A0C2064DE90004A3FAD /* DataModel.xcdatamodeld */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -172,7 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8401A7D3205F474600FFB899 /* TodoListVC.swift in Sources */,
-				84177A0E2064DE90004A3FAD /*  DataModel.xcdatamodeld in Sources */,
+				84177A0E2064DE90004A3FAD /* DataModel.xcdatamodeld in Sources */,
 				8401A7D1205F474600FFB899 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,13 +358,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		84177A0C2064DE90004A3FAD /*  DataModel.xcdatamodeld */ = {
+		84177A0C2064DE90004A3FAD /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				84177A0D2064DE90004A3FAD /*  DataModel.xcdatamodel */,
 			);
 			currentVersion = 84177A0D2064DE90004A3FAD /*  DataModel.xcdatamodel */;
-			path = " DataModel.xcdatamodeld";
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
