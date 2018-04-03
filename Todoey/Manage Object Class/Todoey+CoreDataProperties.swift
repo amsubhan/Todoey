@@ -18,5 +18,23 @@ extension Todoey {
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var parrent: NSSet?
+
+}
+
+// MARK: Generated accessors for parrent
+extension Todoey {
+
+    @objc(addParrentObject:)
+    @NSManaged public func addToParrent(_ value: TodoItem)
+
+    @objc(removeParrentObject:)
+    @NSManaged public func removeFromParrent(_ value: TodoItem)
+
+    @objc(addParrent:)
+    @NSManaged public func addToParrent(_ values: NSSet)
+
+    @objc(removeParrent:)
+    @NSManaged public func removeFromParrent(_ values: NSSet)
 
 }

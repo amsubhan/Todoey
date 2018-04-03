@@ -19,5 +19,6 @@ extension TodoItem {
 
     @NSManaged public var done: Bool
     @NSManaged public var title: String?
+    @NSManaged public var parrentCategory: Todoey?
 
 }
