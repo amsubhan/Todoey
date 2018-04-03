@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 
+
 class TodoListVC: UITableViewController {
 
-    var itemArray = [Item]()
+    var itemArray = [TodoItem]()
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -83,8 +84,8 @@ class TodoListVC: UITableViewController {
         let alert = UIAlertController(title: "Add New Todo", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //when user click add btn
-//            print(textField.text)
-            let newItem = Item(context: self.context)
+            print(textField.text)
+            let newItem = TodoItem(context: self.context)
             newItem.title = textField.text!
             newItem.done = false
             
@@ -120,7 +121,7 @@ class TodoListVC: UITableViewController {
         
     }
     
-    func loadItems(with request : NSFetchRequest<Item> = Item.fetchRequest()){
+    func loadItems(with request : NSFetchRequest<TodoItem> = TodoItem.fetchRequest()){
 
         do {
             itemArray = try context.fetch(request)
@@ -141,7 +142,7 @@ class TodoListVC: UITableViewController {
 //MARK: - Search bar methods
 extension TodoListVC: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        let request : NSFetchRequest<TodoItem> = TodoItem.fetchRequest()
         
         request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
          
