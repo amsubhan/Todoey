@@ -14,6 +14,7 @@
 		8401A7D8205F474600FFB899 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8401A7D7205F474600FFB899 /* Assets.xcassets */; };
 		8401A7DB205F474600FFB899 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8401A7D9205F474600FFB899 /* LaunchScreen.storyboard */; };
 		84177A0E2064DE90004A3FAD /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84177A0C2064DE90004A3FAD /* DataModel.xcdatamodeld */; };
+		8438A524207EAAA700985363 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438A523207EAAA700985363 /* Data.swift */; };
 		84D1DC21207001E100FD8BEE /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D1DC20207001E100FD8BEE /* CategoryViewController.swift */; };
 		84E91D1120742A08007E659A /* TodoItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E91D0D20742A08007E659A /* TodoItem+CoreDataClass.swift */; };
 		84E91D1220742A08007E659A /* TodoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E91D0E20742A08007E659A /* TodoItem+CoreDataProperties.swift */; };
@@ -31,6 +32,7 @@
 		8401A7DA205F474600FFB899 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8401A7DC205F474600FFB899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84177A0D2064DE90004A3FAD /*  DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = " DataModel.xcdatamodel"; sourceTree = "<group>"; };
+		8438A523207EAAA700985363 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		84D1DC20207001E100FD8BEE /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		84E91D0D20742A08007E659A /* TodoItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		84E91D0E20742A08007E659A /* TodoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				84177A0C2064DE90004A3FAD /* DataModel.xcdatamodeld */,
+				8438A523207EAAA700985363 /* Data.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				8401A7D1205F474600FFB899 /* AppDelegate.swift in Sources */,
 				84E91D1220742A08007E659A /* TodoItem+CoreDataProperties.swift in Sources */,
 				84E91D1320742A08007E659A /* Todoey+CoreDataClass.swift in Sources */,
+				8438A524207EAAA700985363 /* Data.swift in Sources */,
 				84E91D1120742A08007E659A /* TodoItem+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
