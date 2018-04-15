@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
 import RealmSwift
 
 @UIApplicationMain
