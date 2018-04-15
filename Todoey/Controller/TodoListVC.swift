@@ -94,7 +94,7 @@ class TodoListVC: UITableViewController {
 //        }
 //        else{
 //            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-//        }
+//        }a
         
         tableView.deselectRow(at: indexPath, animated: true) // ????
     }
