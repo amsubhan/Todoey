@@ -19,6 +19,7 @@ class CategoryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadItems()
+        tableView.rowHeight = 80.0
       //  print("2")
         //print(todoeyCategories[0].name)
         
@@ -31,8 +32,9 @@ class CategoryViewController: UITableViewController {
         return  todoeyCategories?.count ?? 1 // Nil Coalescing Operator (if nil return 1)
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! SwipeTableViewCell
         cell.textLabel?.text = todoeyCategories?[indexPath.row].name ?? "No Categories Added Yet"
+        cell.delegate = self
         return cell
     }
 
@@ -92,5 +94,41 @@ class CategoryViewController: UITableViewController {
             textField.placeholder = "Add a New Category"
         }
         present(alert, animated: true, completion: nil)
+    }
+}
+
+//MARK: - Swipe Cell Delegate Methods
+
+extension CategoryViewController : SwipeTableViewCellDelegate{
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+//            print("delete clouser")
+            
+            if let categoryDeletion = self.todoeyCategories?[indexPath.row]{
+                do{
+                    try   self.realm.write {
+                        self.realm.delete(categoryDeletion)
+                    }
+                }catch{
+                    print("Error removing category \(error)")
+                }
+            }
+//            tableView.reloadData() comment b/c of expansion styles
+            
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+        
+        return [deleteAction]
+    }
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        options.expansionStyle = .destructive
+        options.transitionStyle = .border
+        return options
     }
 }
