@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 
-class TodoListVC: UITableViewController {
+class TodoListVC: SwipeTableViewController {
 
     let realm = try! Realm()
     
@@ -18,10 +18,11 @@ class TodoListVC: UITableViewController {
     var selectedCategory : Category?{
         didSet{
             loadItems()
+            tableView.rowHeight = 80.0
         }
     }
     
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+   // let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
     
     override func viewDidLoad() {
@@ -37,7 +38,7 @@ class TodoListVC: UITableViewController {
 //            itemArray = items
 //        }
       
-//       loadItems()
+//     loadItems()
     }
     
     
@@ -47,7 +48,8 @@ class TodoListVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItemCell", for: indexPath)
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         if let item = todoItems?[indexPath.row]{
             cell.textLabel?.text = item.title
@@ -136,12 +138,7 @@ class TodoListVC: UITableViewController {
             
             
             
-            //newItem.parrentCategory = self.selectedCategory
-            
-            
-            //self.tableView.reloadData()
-
-            
+                    
 
             self.tableView.reloadData()
             //print(self.todoItems[self.todoItems.count - 1])
@@ -156,7 +153,19 @@ class TodoListVC: UITableViewController {
     
     //MARK - Model Manuplation Methods
     
-    //save data in NSCoder by encoding technique
+    override func updateModel(at indexPath: IndexPath) {
+        if let itemDeletion = self.todoItems?[indexPath.row]{
+            do{
+                try   self.realm.write {
+                    self.realm.delete(itemDeletion)
+                }
+            }catch{
+                print("Error removing category \(error)")
+            }
+        }
+        //            tableView.reloadData() comment b/c of expansion styles
+        
+    }
    
     func loadItems(){
         
