@@ -14,6 +14,7 @@ class TodoListVC: SwipeTableViewController {
 
     let realm = try! Realm()
     
+    @IBOutlet weak var searchBar: UISearchBar!
     var todoItems : Results<Item>?
     var selectedCategory : Category?{
         didSet{
@@ -41,7 +42,30 @@ class TodoListVC: SwipeTableViewController {
       
 //     loadItems()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        //called after viewDidLoad but just before user sees anything!
+        
+        guard let color = selectedCategory?.bgColor else{fatalError()}
+        
+        title = selectedCategory?.name
+        updateNavBar(withHexCode: color)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        updateNavBar(withHexCode: "1D9bf6")
+    }
     
+    //MARK: - Navbar setup
+    func updateNavBar(withHexCode colourHexCode :String){
+        guard let navBar = navigationController?.navigationBar else{
+            fatalError("Navugation Controller does not exist")
+        }
+        guard let barColor = UIColor(hexString: colourHexCode) else{fatalError()}
+        //                let barColor = FlatWhite()
+        navBar.barTintColor = barColor
+        navBar.tintColor = ContrastColorOf(barColor, returnFlat: true)
+        navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: ContrastColorOf(barColor, returnFlat: true)]
+        searchBar.barTintColor = barColor
+    }
     
     //MARK - TabelView Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,6 +92,7 @@ class TodoListVC: SwipeTableViewController {
             }
             
             cell.accessoryType = item.done ? .checkmark : .none
+            
         }
         
         else{
@@ -183,27 +208,6 @@ class TodoListVC: SwipeTableViewController {
     func loadItems(){
         
         todoItems = selectedCategory?.itemsObjects.sorted(byKeyPath: "title", ascending: true)
-
-//        let categoryPredicate = NSPredicate(format: "parrentCategory.name MATCHES %@", selectedCategory!.name!)
-//
-//        if let additionalPredicate = predicate{
-//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,additionalPredicate])
-//        }
-//        else{
-//            request.predicate = categoryPredicate
-//        }
-//
-////        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,predicate])
-////
-////        request.predicate = compoundPredicate
-//
-//        do {
-//            itemArray = try context.fetch(request)
-//            print("Fetching Array")
-//            print(itemArray)
-//        }catch{
-//            print("Error ppp: \(error)")
-//        }
         tableView.reloadData()
     }
     
