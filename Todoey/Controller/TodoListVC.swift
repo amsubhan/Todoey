@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-
+import ChameleonFramework
 
 class TodoListVC: SwipeTableViewController {
 
@@ -21,6 +21,7 @@ class TodoListVC: SwipeTableViewController {
             tableView.rowHeight = 80.0
         }
     }
+    var selectedColour : UIColor?
     
    // let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
@@ -53,6 +54,18 @@ class TodoListVC: SwipeTableViewController {
         
         if let item = todoItems?[indexPath.row]{
             cell.textLabel?.text = item.title
+//            print("dsdd-----------------")
+//            let clr  = item.parentCategory.value(forKey: "bgColor")
+//            print(clr )
+            
+            
+      
+            
+            if let colour = UIColor(hexString : selectedCategory!.bgColor)?.darken(byPercentage:CGFloat(indexPath.row)/CGFloat(todoItems!.count))
+            {
+             cell.backgroundColor = colour
+                cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+            }
             
             cell.accessoryType = item.done ? .checkmark : .none
         }

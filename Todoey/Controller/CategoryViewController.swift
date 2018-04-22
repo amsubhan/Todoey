@@ -51,6 +51,7 @@ class CategoryViewController: SwipeTableViewController {
         
         if let indexPath = tableView.indexPathForSelectedRow {
             destinaionVC.selectedCategory = todoeyCategories?[indexPath.row]
+            
         }
     }
     
